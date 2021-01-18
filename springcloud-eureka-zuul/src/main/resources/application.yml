@@ -1,0 +1,31 @@
+server:
+  port: 8871
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8881/eureka/,http://127.0.0.1:8882/eureka/
+spring:
+  application:
+    name: springcloud-zuul-router
+zuul:
+  routes:
+    #此名称可以随意编写(最好一目了然)
+    member:
+      #访问eureka-member服务: http://localhost:8851/api-member/member/getMember
+      #服务名称为eureka-member的请求都会转到当前请求下
+      #service-id 服务名称
+      path: /api-member/**
+      service-id: eureka-member
+    #此名称可以随意编写
+    order:
+      #访问eureka-order服务: http://localhost:8861/eureka-order/order/getOrder
+      #服务名称为eureka-order的请求都会转到当前请求下
+      path: /api-order/**
+      service-id: eureka-order
+#开启所有监控中心
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

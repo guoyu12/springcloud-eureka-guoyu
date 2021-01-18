@@ -1,0 +1,22 @@
+###端口
+server:
+  port: 8841
+###注册中心服务地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8881/eureka/,http://127.0.0.1:8882/eureka/
+###服务注册名称
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          ##直接访问 http://localhost:8841/main/springcloud-config-dev.yml
+          #### config-server 读取git环境地址
+          uri: https://github.com/guoyu12/springcloudconfig
+          ###git配置文件目录位置 github文件springcloud-config-dev.properties 在首页所以为 /  在目录中需要配置目录名称
+          search-paths: /
+      label: main

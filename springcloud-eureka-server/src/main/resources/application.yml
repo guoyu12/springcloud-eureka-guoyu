@@ -1,0 +1,22 @@
+server:
+  port: 8882
+#服务名称
+spring:
+  application:
+    name: eureka-server
+#服务地址
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8881/eureka/,http://127.0.0.1:8882/eureka/
+    #注册该服务到eureka 单机状态不必要去注册
+    register-with-eureka: true
+    #是否需要去注册中心获取其它服务的地址信息
+    fetch-registry: true
+  server:
+    #关闭自我保护机制 默认是开启的(不会剔除无效的服务涉及网络因素生产环境建议打开)
+    enable-self-preservation: false
+    #单位为毫秒 如果关闭了保护机制则会在当前时间之后剔除无效服务
+    eviction-interval-timer-in-ms: 5000
